@@ -1,0 +1,120 @@
+<div class="container">
+    <form [formGroup]="mainForm" (ngSubmit)="addAuthorToDataBook(mainForm) " style="margin-bottom: 200px;">
+        <div class="container-form">
+            <div class="container-form_author">
+                <h2 style="text-align: center;">Редактор автора </h2>
+                <div>
+                    <div class="formBlock">
+                        <p>Фамилия</p>
+                        <input type="text" formControlName="firstName" placeholder="Иванов">
+                        <span
+                            *ngIf="mainForm.get('firstName')?.errors?.['textValidator']&&mainForm.get('firstName')?.touched">Не
+                            верный формат ввода </span>
+                        <span
+                            *ngIf="mainForm.get('firstName')?.errors?.['minlength']&&mainForm.get('firstName')?.touched">
+                            Минимальное
+                            количество символов
+                            {{mainForm.get('firstName')?.errors?.['minlength'].requiredLength}}</span>
+                    </div>
+                    <div class="formBlock">
+                        <p>Имя</p>
+                        <input type="text" formControlName="secondName" placeholder="Иван">
+                        <span
+                            *ngIf="mainForm.get('secondName')?.errors?.['textValidator']&&mainForm.get('secondName')?.touched">Не
+                            верный формат ввода </span>
+                        <span
+                            *ngIf="mainForm.get('secondName')?.errors?.['minlength']&&mainForm.get('secondName')?.touched">
+                            Минимальное
+                            количество символов
+                            {{mainForm.get('secondName')?.errors?.['minlength'].requiredLength}}</span>
+                    </div>
+                    <div class="formBlock">
+                        <p>Отчество</p>
+                        <input type="text" formControlName="thirdName" placeholder="Иванович">
+                        <span
+                            *ngIf="mainForm.get('thirdName')?.errors?.['textValidator']&&mainForm.get('thirdName')?.touched">Не
+                            верный формат ввода </span>
+                    </div>
+                    <div class="formBlock">
+                        <p>Дата рождения</p>
+                        <input type="text" formControlName="birthDay" placeholder="01.01.1900">
+                        <span
+                            *ngIf="mainForm.get('birthDay')?.errors?.['birthDayValidator']&&mainForm.get('birthDay')?.touched">Не
+                            верный формат ввода </span>
+                    </div>
+                </div>
+                <div class="container-form_author-books">
+                    <h2>Книги</h2>
+
+                    <div>
+                        <div *ngFor="let book of books" style="border:1px solid black;">
+                            <div class="author-books_data">
+                                <div class="author-books_data-info">
+                                    <p>Название : {{book?.name}}</p>
+                                    <p>Жанр : {{book?.genre}} </p>
+                                    <p>Страницы : {{book?.str}}</p>
+                                </div>
+                                <div class="edit-block">
+                                    <div>
+                                        <a href="#" (click)="changeBook($event,book)">Редактировать</a>
+
+                                    </div>
+                                    <div>
+                                        <a href="#" (click)="deleteBook($event,book.id)">Удалить</a>
+                                    </div>
+
+
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="container-form_book">
+                <a href="authors" (click)="addBookToDataBooks($event)" class="add-book">Добавить Книгу</a>
+
+
+                <div formGroupName="booksData" *ngIf="addBookCheck">
+                    <div class="formBlock">
+                        <p>Название книги</p>
+                        <input type="text" formControlName="bookName" placeholder="Домино">
+                        <span
+                            *ngIf="mainForm.get('booksData')?.get('bookName')?.errors?.['textValidator']&&mainForm.get('booksData')?.get('bookName')?.touched">Не
+                            верный формат ввода </span>
+                    </div>
+                    <div class="formBlock">
+                        <p>Жанр</p>
+                        <select formControlName="bookGenre" name="select">
+                            <option *ngFor="let item of genresBooks" [value]="item" selected>{{item}}</option>
+                        </select>
+                    </div>
+                    <div class="formBlock">
+                        <p>Количество страниц</p>
+                        <input type="number" formControlName="bookLength" placeholder="123">
+                        <span
+                            *ngIf="mainForm.get('booksData')?.get('bookLength')?.errors?.['strValidator']&&mainForm.get('booksData')?.get('bookLength')?.touched">Не
+                            верный формат ввода </span>
+                    </div>
+
+                    <input type="button" value="Сохранить книгу" class="save-book"
+                        [disabled]="mainForm.get('booksData')?.invalid" (click)="addBook(mainForm)">
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+
+        <br>
+        <input type="submit" value="Сохранить" [disabled]="mainForm.invalid" class="save">
+
+    </form>
+</div>

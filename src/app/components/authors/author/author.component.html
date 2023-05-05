@@ -1,0 +1,24 @@
+<div class="author">
+    <div class="authorBlock">
+        <div class="authorBlock-name">
+            <p>{{bookArray.author}}</p>
+        </div>
+        <div class="authorBlock-length">
+            <p>{{bookArray.books.length||0}}</p>
+        </div>
+    </div>
+
+    <div class="editBlock">
+        <div><a href="authors" (click)="editingAuthor($event)">Редактировать</a></div>
+        <div><a href="authors" (click)="deleteAuthor($event)">Удалить</a></div>
+        <div><a href="authors" (click)="details($event)">Детали</a></div>
+    </div>
+
+
+
+
+
+
+
+
+</div>

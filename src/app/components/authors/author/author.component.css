@@ -1,0 +1,33 @@
+.author {
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: baseline;
+  border: 1px solid black;
+  padding: 10px;
+  text-align: center;
+}
+.author p {
+  margin: 5px 20px;
+}
+
+.editBlock {
+  display: flex;
+  width: 50%;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-wrap: wrap;
+  min-width: 200px;
+}
+.authorBlock {
+  display: flex;
+  width: 50%;
+  min-width: 200px;
+}
+.authorBlock-name {
+  width: 200px;
+}
+.authorBlock-length {
+  width: 50px;
+}

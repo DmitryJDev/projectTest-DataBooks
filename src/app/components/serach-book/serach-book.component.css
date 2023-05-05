@@ -1,0 +1,24 @@
+:host input {
+  width: 50%;
+  min-width: 100px;
+  padding: 5px;
+  border-radius: 5px;
+}
+:host {
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  padding: 50px;
+  flex-wrap: wrap;
+}
+.block-book {
+  border: 1px solid black;
+  border-radius: 20px;
+  padding: 10px;
+  margin: 20px 0;
+}
+i {
+  font-size: 18px;
+  color: rgb(100, 99, 99);
+}

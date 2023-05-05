@@ -1,0 +1,52 @@
+input.ng-valid {
+  border: 1px solid green;
+}
+input.ng-invalid {
+  border: 1px solid red;
+}
+select.ng-valid {
+  border: 1px solid green;
+}
+select.ng-invalid {
+  border: 1px solid red;
+}
+:host {
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  padding: 50px;
+  flex-wrap: wrap;
+}
+:host p {
+  font-size: 18px;
+}
+.container {
+  width: 70%;
+}
+.container input {
+  width: 70%;
+  min-width: 100px;
+  padding: 5px;
+  border-radius: 5px;
+}
+.container select {
+  width: 70%;
+  padding: 5px;
+  border-radius: 5px;
+  min-width: 100px;
+}
+.save-book {
+  text-decoration: none;
+  border-radius: 5px;
+  background-color: white;
+  padding: 5px 15px;
+  align-self: center;
+  margin-top: 20px;
+}
+:host span {
+  color: red;
+  padding-left: 10px;
+  font-size: 14px;
+  font-style: italic;
+}

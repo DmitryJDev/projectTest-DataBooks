@@ -1,0 +1,23 @@
+<div [formGroup]="booksData" class="container">
+    <div class="formBlock">
+        <p>Название книги</p>
+        <input type="text" formControlName="bookName" placeholder="Домино">
+        <span *ngIf="booksData.get('bookName')?.errors?.['textValidator']&&booksData.get('bookName')?.touched">Не
+            верный формат ввода </span>
+    </div>
+    <div class="formBlock">
+        <p>Жанр</p>
+        <select formControlName="bookGenre" name="select">
+            <option *ngFor="let item of genresBooks" [value]="item" selected>{{item}}</option>
+        </select>
+    </div>
+    <div class="formBlock">
+        <p>Количество страниц</p>
+        <input type="number" formControlName="bookLength" placeholder="123">
+        <span *ngIf="booksData.get('bookLength')?.errors?.['strValidator']&&booksData.get('bookLength')?.touched">Не
+            верный формат ввода </span>
+    </div>
+
+    <input type="button" value="Сохранить книгу" [disabled]="booksData.invalid" (click)="addBook(booksData)"
+        class="save-book">
+</div>

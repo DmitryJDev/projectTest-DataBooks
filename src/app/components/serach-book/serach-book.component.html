@@ -1,0 +1,12 @@
+<h2>Поиск Книги по названию</h2>
+<input type="text" #inpBook (input)="searchBook(inpBook.value)">
+<div *ngFor="let searBook of tempArr">
+    <div class="block-book">
+        <p>Название книги : <i>{{searBook?.name}}</i> </p>
+        <p>Жанр : <i>{{searBook?.genre}}</i> </p>
+        <p>Страницы : <i>{{searBook?.str}}</i> </p>
+        <p>Автор : <i>{{searBook?.authorBook}}</i> </p>
+
+    </div>
+
+</div>

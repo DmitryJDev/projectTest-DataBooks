@@ -1,0 +1,66 @@
+.container_content_authors {
+  display: flex;
+}
+.container_content_author {
+  min-width: 20%;
+  text-align: center;
+}
+.container_content_books {
+  min-width: 80%;
+  text-align: start;
+  padding-left: 40px;
+}
+:host {
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.container {
+  width: 100%;
+  flex-wrap: wrap;
+  display: flex;
+  justify-content: space-around;
+  align-items: baseline;
+}
+.container_button {
+  width: 20%;
+  padding-top: 50px;
+  text-align: center;
+  background-color: white;
+}
+.container_button a {
+  text-decoration: none;
+  display: block;
+  background-color: lightgray;
+  border: 1px solid lightgray;
+  border-radius: 5px;
+  padding: 5px 10px;
+  color: black;
+}
+.container_content {
+  padding-top: 30px;
+  min-width: 75%;
+}
+.container_content_authors-books {
+  margin: 5px;
+}
+.about-author {
+  width: 100%;
+}
+.about-author_books {
+  display: flex;
+  flex-wrap: wrap;
+}
+.about-author_book {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  flex-wrap: wrap;
+  border: 1px solid black;
+  min-width: 20%;
+  align-items: center;
+  justify-content: center;
+}

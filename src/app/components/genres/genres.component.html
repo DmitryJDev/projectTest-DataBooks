@@ -1,0 +1,13 @@
+<h2>Список жанров книг</h2>
+<div *ngFor="let genre of genres">
+    <i>- {{genre}}</i>
+</div>
+<div>
+    <h4>Добавить свой жанр</h4>
+    <form [formGroup]="form" (ngSubmit)="addGenre(inp)">
+        <input type="text" placeholder="Ужастики" formControlName="genreInp" #inp>
+        <span *ngIf="form.get('genreInp')?.errors?.['textValidator']&&form.get('genreInp')?.touched">Не
+            верный формат ввода </span><br>
+        <input type="submit" [disabled]="form.invalid" value="Добавить" class="save-button">
+    </form>
+</div>

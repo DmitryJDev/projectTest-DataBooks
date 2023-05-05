@@ -1,0 +1,7 @@
+export * from './authors/authors.component'
+export * from './genres/genres.component'
+export * from './authors/author/author.component'
+export * from './adding-authors/adding-authors.component'
+export * from './addingbook/addingbook.component'
+export * from './authors/edit-author/edit-author.component'
+export * from './serach-book/serach-book.component'

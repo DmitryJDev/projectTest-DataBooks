@@ -1,0 +1,56 @@
+<div class="container">
+    <div class="container_button">
+        <a href="#" (click)="addAuthorChecking($event)">Добавить автора</a>
+
+    </div>
+
+    <div class="container_content">
+        <div class="container_content_authors">
+            <div class="container_content_author">
+                <p (click)="authorFilter()"><b>Авторы</b><span *ngIf=" authorFilterSpan">&darr;</span><span
+                        *ngIf=" !authorFilterSpan">&uarr;</span></p>
+            </div>
+            <div class="container_content_books">
+                <p (click)="filterBook()"><b>Книг в базе</b> <span *ngIf=" bookFilterSpan">&darr;</span><span
+                        *ngIf=" !bookFilterSpan">&uarr;</span></p>
+            </div>
+        </div>
+        <div *ngFor="let book of booksArray" class="container_content_authors-books">
+            <app-author [bookArray]="book"></app-author>
+        </div>
+    </div>
+    <div *ngIf="fullDetailId" class="about-author">
+        <h3>Информация об авторе</h3>
+        <div>
+            <b>Фамилия</b> : {{detailArray[0].author_firstName}}
+        </div>
+        <div>
+            <b>Имя</b> : {{detailArray[0].author_secondName}}
+        </div>
+        <div>
+            <b>Отчество</b> : {{detailArray[0].author_thirdName}}
+        </div>
+        <div>
+            <b>Год рождения</b> : {{detailArray[0].author_birthDay}}
+        </div>
+        <h4>Книги</h4>
+        <div class="about-author_books">
+            <div *ngFor="let detailBook of detailArray[0]?.books" class="about-author_book">
+
+                <div>
+                    <b>Название</b> : {{detailBook.name}}
+                </div>
+                <div>
+                    <b>Жанр</b> : {{detailBook.genre}}
+                </div>
+                <div>
+                    <b>Страницы</b> : {{detailBook.str}}
+                </div>
+                <hr>
+            </div>
+        </div>
+
+
+
+    </div>
+</div>
