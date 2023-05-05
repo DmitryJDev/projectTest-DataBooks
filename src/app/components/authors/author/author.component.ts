@@ -29,3 +29,4 @@ export class AuthorComponent {
     this.router.navigate(['editAuthor'],{queryParams:{id :this.bookArray.id}})
   }
 }
+ 
