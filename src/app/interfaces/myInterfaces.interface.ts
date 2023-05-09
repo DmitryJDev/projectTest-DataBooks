@@ -1,44 +1,60 @@
-export interface book{
+
+export interface Book{
     genre: string;
     id: number;
     name: string;
     str: string;
 }
-export interface bookForSearch{
+
+export interface BookForSearch{
     name: string;
     str: string|number;
     genre: string;
     authorBook?: string;
 }
-export interface searchingBook{
+
+export interface SearchingBook{
     name: string;
     str: number|string;
     genre: string;
     authorBook?: string;
-    id: number
+    id: number;
 }
 
-
-export interface dataBook{
+export interface DataBook{
     id: number;
     author: string;
     author_birthDay: string;
     author_firstName: string;
     author_secondName: string;
     author_thirdName: string;
-    books: Array<book>    
+    books: Array<Book>    
 }
-export interface dataBookForSearch{
+
+export interface DataBookForSearch{ 
+
     id: number;
     author: string;
     author_birthDay: string;
     author_firstName: string;
     author_secondName: string;
     author_thirdName: string;
-    books: Array<searchingBook>    
+    books: Array<SearchingBook>    
 }
-export interface editingBook{
+
+export interface EditingBook{
     bookGenre: string;
-bookLength: string;
-bookName: string;
+    bookLength: string;
+    bookName: string;
 }
+
+export interface Author {
+    id: number;
+    author: string;
+    author_birthDay: string;
+    author_firstName: string;
+    author_secondName: string;
+    author_thirdName: string;
+    books: Array<Book>
+ }
+

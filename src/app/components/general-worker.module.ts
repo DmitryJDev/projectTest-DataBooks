@@ -3,9 +3,6 @@ import { CommonModule } from '@angular/common';
 import{AuthorsComponent, GenresComponent,AuthorComponent,AddingAuthorsComponent,AddingbookComponent,EditAuthorComponent,SerachBookComponent} from './index';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 
-
-
-
 @NgModule({
   declarations: [
     AuthorsComponent,
