@@ -22,9 +22,9 @@ export class AddingbookComponent {
   name!: string;
   str!: string;
   booksData!: FormGroup;
-  bookNameControl!: FormControl;
-  bookLengthControl!: FormControl;
-  bookGenreControl!: FormControl;
+  bookName!: FormControl;
+  bookLength!: FormControl;
+  bookGenre!: FormControl;
   
   getGenresData() {
     this.genresBooks = this.dataBook.getBooksGenresData()
@@ -44,21 +44,24 @@ export class AddingbookComponent {
   }  
   
   setBookControls() {
-    this.bookNameControl = this.fb.control(`${this.name}`, [Validators.required, myValidators.textValidator]);
-    this.bookLengthControl = this.fb.control(`${this.str}`,[Validators.required, myValidators.strValidator]);
-    this.bookGenreControl = this.fb.control(`${this.genre}`,Validators.required);
+    this.bookName = this.fb.control(`${this.name}`, [Validators.required, myValidators.textValidator]);
+    this.bookLength = this.fb.control(`${this.str}`,[Validators.required, myValidators.strValidator]);
+    this.bookGenre = this.fb.control(`${this.genre}`,Validators.required);
   }
 
   setForm() {   
     this.booksData = this.fb.group({
-      bookName: this.bookNameControl,              
-      bookGenre: this.bookGenreControl,        
-      bookLength: this.bookLengthControl        
+      bookName: this.bookName,              
+      bookGenre: this.bookGenre,        
+      bookLength: this.bookLength        
     })      
   }
 
-  addBook(book: FormGroup) {      
-    this.editingBook.editBook(book.value, this.id);    
+  addBook(book: FormGroup) {  
+    if (this.booksData.valid) {
+      this.editingBook.editBook(book.value, this.id);    
     this.location.back();
   }
+    }
+    
 }

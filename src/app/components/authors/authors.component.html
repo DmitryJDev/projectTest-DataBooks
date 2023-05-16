@@ -1,6 +1,8 @@
 <div class="container">
     <div class="container_button">
-        <a href="#" (click)="addAuthorChecking($event)">Добавить автора</a>
+
+
+        <a href="#" (click)="addAuthorChecking($event)" class="btn btn-outline-secondary">Добавить автора</a>
 
     </div>
 
@@ -19,6 +21,7 @@
             <app-author [bookArray]="book"></app-author>
         </div>
     </div>
+    <br>
     <div *ngIf="fullDetailId" class="about-author">
         <h3>Информация об авторе</h3>
         <div>
@@ -33,20 +36,24 @@
         <div>
             <b>Год рождения</b> : {{detailArray[0].author_birthDay}}
         </div>
+        <br>
         <h4>Книги</h4>
-        <div class="about-author_books">
-            <div *ngFor="let detailBook of detailArray[0]?.books" class="about-author_book">
+        <br>
+        <div class=" about-author_books ">
 
-                <div>
-                    <b>Название</b> : {{detailBook.name}}
+            <div *ngFor="let detailBook of detailArray[0]?.books" class="card card_block">
+                <div class="card-body ">
+                    <div>
+                        <b class="card-text">Название</b> : {{detailBook.name}}
+                    </div>
+                    <div>
+                        <b class="card-text">Жанр</b> : {{detailBook.genre}}
+                    </div>
+                    <div>
+                        <b class="card-text">Страницы</b> : {{detailBook.str}}
+                    </div>
                 </div>
-                <div>
-                    <b>Жанр</b> : {{detailBook.genre}}
-                </div>
-                <div>
-                    <b>Страницы</b> : {{detailBook.str}}
-                </div>
-                <hr>
+
             </div>
         </div>
 

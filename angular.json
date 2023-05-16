@@ -25,7 +25,8 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              "C:/Users/Дмитрий/Desktop/BooksTask/project/node_modules/bootstrap/dist/css/bootstrap.min.css"
             ],
             "scripts": []
           },

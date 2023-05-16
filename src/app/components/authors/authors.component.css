@@ -26,20 +26,9 @@
   align-items: baseline;
 }
 .container_button {
-  width: 20%;
   padding-top: 50px;
-  text-align: center;
-  background-color: white;
 }
-.container_button a {
-  text-decoration: none;
-  display: block;
-  background-color: lightgray;
-  border: 1px solid lightgray;
-  border-radius: 5px;
-  padding: 5px 10px;
-  color: black;
-}
+
 .container_content {
   padding-top: 30px;
   min-width: 75%;
@@ -49,6 +38,7 @@
 }
 .about-author {
   width: 100%;
+  margin-top: 50px;
 }
 .about-author_books {
   display: flex;
@@ -63,4 +53,8 @@
   min-width: 20%;
   align-items: center;
   justify-content: center;
+}
+.card_block {
+  min-width: 250px;
+  max-width: 30%;
 }

@@ -23,12 +23,17 @@ export class EditAuthorComponent {
   dataAutorBirthaDay: string = '';
   dataAutorBooks!:Array<Book>;
   mainForm!: FormGroup;
-  bookNameControl!: FormControl;
-  bookLengthControl!: FormControl;
-  bookGenreControl!: FormControl;
+  bookName!: FormControl;
+  bookLength!: FormControl;
+  bookGenre!: FormControl;
   genresBooks!: Array<string>;
   addBookCheck: boolean = false;
   books!: Array<Book>;
+  firstName!: FormControl;
+  secondName!: FormControl;
+  thirdName!: FormControl;
+  birthDay!: FormControl;
+  booksData!: FormGroup;
   
   ngOnInit() {
     this.activatedRoute.queryParams.subscribe(data => {
@@ -64,26 +69,32 @@ export class EditAuthorComponent {
   }  
   
   setBookControls() {
-    this.bookNameControl = this.fb.control('');
-    this.bookLengthControl = this.fb.control('');
-    this.bookGenreControl = this.fb.control('');
+    this.bookName = this.fb.control('');
+    this.bookLength = this.fb.control('');
+    this.bookGenre = this.fb.control('');
+    this.booksData=this.fb.group({
+      bookName: this.bookName,
+      bookGenre: this.bookGenre,
+      bookLength:this.bookLength
+    })
+    this.firstName = this.fb.control(`${this.dataAutorFirstName}`, [Validators.minLength(2), Validators.required, myValidators.textValidator]);
+    this.secondName = this.fb.control(`${this.dataAutorSecondName}`, [Validators.minLength(2), Validators.required, myValidators.textValidator]);
+    this.thirdName = this.fb.control(`${this.dataAutorThirdName}`, myValidators.thirdNameValidator);
+    this.birthDay = this.fb.control(`${this.dataAutorBirthaDay}`, myValidators.birthDayValidator);
   }
 
   setForm() {
     this.mainForm= new FormGroup({
-      firstName: this.fb.control(`${this.dataAutorFirstName}`, [Validators.minLength(2), Validators.required, myValidators.textValidator]),
-      secondName: this.fb.control(`${this.dataAutorSecondName}`, [Validators.minLength(2), Validators.required, myValidators.textValidator]),
-      thirdName: this.fb.control(`${this.dataAutorThirdName}`, myValidators.thirdNameValidator),
-      birthDay: this.fb.control(`${this.dataAutorBirthaDay}`, myValidators.birthDayValidator),
-      booksData: this.fb.group({
-        bookName: this.bookNameControl,
-        bookGenre: this.bookGenreControl,
-        bookLength:this.bookLengthControl
-      })
+      firstName: this.firstName,
+      secondName: this.secondName,
+      thirdName: this.thirdName,
+      birthDay:this.birthDay ,
+      booksData: this.booksData
     })
   }
   
- addAuthorToDataBook(forma: FormGroup) {  
+  addAuthorToDataBook(forma: FormGroup) {  
+    if (this.mainForm.valid) { 
     this.books = [];
     this.addBookServ.books = [];
     this.editAuthor(forma, this.dataAutor[0].id)
@@ -91,6 +102,8 @@ export class EditAuthorComponent {
     this.mainForm.reset();
     forma.reset();
     this.router.navigate(['authors']);
+    }  
+    
   }
   
   editAuthor(form: FormGroup, id: number) {
@@ -121,20 +134,23 @@ export class EditAuthorComponent {
     e.preventDefault();
     
     this.addBookCheck = !this.addBookCheck;
-    this.bookNameControl.addValidators([Validators.required, myValidators.textValidator]);
-    this.bookLengthControl.addValidators([Validators.required, myValidators.strValidator]);
-    this.bookGenreControl.addValidators(Validators.required);
+    this.bookName.addValidators([Validators.required, myValidators.textValidator]);
+    this.bookLength.addValidators([Validators.required, myValidators.strValidator]);
+    this.bookGenre.addValidators(Validators.required);
   }
 
   addBook(forms: FormGroup) {    
-    this.bookNameControl.clearValidators();
-    this.bookLengthControl.clearValidators();
-    this.bookGenreControl.clearValidators();    
-    this.addBookCheck = !this.addBookCheck; 
+    if (this.booksData.valid) {
 
-    let book = this.createNewBook(forms);
-    this.books = this.addBookServ.addBook(book);  
-    this.dataBookServ.booksArr = this.books;
+      this.bookName.clearValidators();
+      this.bookLength.clearValidators();
+      this.bookGenre.clearValidators();
+      this.addBookCheck = !this.addBookCheck;
+
+      let book = this.createNewBook(forms);
+      this.books = this.addBookServ.addBook(book);
+      this.dataBookServ.booksArr = this.books;
+    }
   }  
   
   createNewBook(forms:FormGroup) {

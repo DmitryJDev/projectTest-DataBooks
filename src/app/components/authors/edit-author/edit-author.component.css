@@ -1,4 +1,4 @@
-input.ng-valid {
+/* input.ng-valid {
   border: 1px solid green;
 }
 input.ng-invalid {
@@ -110,4 +110,20 @@ select.ng-invalid {
   padding-left: 10px;
   font-size: 14px;
   font-style: italic;
+} */
+::placeholder {
+  color: lightgray;
+}
+.container-form_author-books {
+  padding-top: 50px;
+  margin-bottom: 50px;
+}
+.container-form_author-books_block {
+  display: flex;
+  flex-wrap: wrap;
+}
+.author-books_data {
+  margin-top: 20px;
+  min-width: 250px;
+  max-width: 30%;
 }

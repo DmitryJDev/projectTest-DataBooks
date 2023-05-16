@@ -1,113 +1,157 @@
 <div class="container">
-    <form [formGroup]="registrForm" (ngSubmit)="addAuthorToDataBook(registrForm) " style="margin-bottom: 200px;">
-        <div class="container-form">
-            <div class="container-form_author">
+    <form [formGroup]="registrForm" (ngSubmit)="addAuthorToDataBook(registrForm) " style="margin-bottom: 200px;"
+        novalidate>
+        <div>
+            <div>
                 <h2 style="text-align: center;">Добавить автора</h2>
-                <div>
-                    <div class="formBlock">
-                        <p>Фамилия</p>
-                        <input type="text" formControlName="firstName" placeholder="Иванов">
-                        <span
-                            *ngIf="registrForm.get('firstName')?.errors?.['textValidator']&&registrForm.get('firstName')?.touched">Не
-                            верный формат ввода </span>
-                        <span
+                <div class="form-group">
+                    <div>
+                        <label for="firstName">Фамилия</label>
+                        <input id="firstName" type="text" formControlName="firstName" placeholder="Иванов"
+                            class="form-control" [ngClass]="{
+                                'is-invalid':firstName.invalid && firstName.dirty,
+                                'is-valid':firstName.valid && firstName.dirty
+                            }">
+                        <div class="alert alert-danger"
+                            *ngIf="registrForm.get('firstName')?.errors?.['textValidator']&&registrForm.get('firstName')?.touched">
+                            Не
+                            верный формат ввода </div>
+                        <div class="alert alert-danger"
                             *ngIf="registrForm.get('firstName')?.errors?.['minlength']&&registrForm.get('firstName')?.touched">
                             Минимальное
                             количество символов
-                            {{registrForm.get('firstName')?.errors?.['minlength'].requiredLength}}</span>
+                            {{registrForm.get('firstName')?.errors?.['minlength'].requiredLength}}</div>
 
                     </div>
-                    <div class="formBlock">
-                        <p>Имя</p>
-                        <input type="text" formControlName="secondName" placeholder="Иван">
-                        <span
-                            *ngIf="registrForm.get('secondName')?.errors?.['textValidator']&&registrForm.get('secondName')?.touched">Не
-                            верный формат ввода </span>
-                        <span
+                    <br>
+                    <div>
+                        <label for="secondName">Имя</label>
+                        <input id="secondName" type="text" formControlName="secondName" placeholder="Иван"
+                            class="form-control" [ngClass]="{
+                                'is-invalid':secondName.invalid && secondName.dirty,
+                                'is-valid':secondName.valid && secondName.dirty
+                            }">
+                        <div class="alert alert-danger"
+                            *ngIf="registrForm.get('secondName')?.errors?.['textValidator']&&registrForm.get('secondName')?.touched">
+                            Не
+                            верный формат ввода </div>
+                        <div class="alert alert-danger"
                             *ngIf="registrForm.get('secondName')?.errors?.['minlength']&&registrForm.get('secondName')?.touched">
                             Минимальное
                             количество символов
-                            {{registrForm.get('secondName')?.errors?.['minlength'].requiredLength}}</span>
+                            {{registrForm.get('secondName')?.errors?.['minlength'].requiredLength}}</div>
                     </div>
-                    <div class="formBlock">
-                        <p>Отчество</p>
-                        <input type="text" formControlName="thirdName" placeholder="Иванович">
-                        <span
-                            *ngIf="registrForm.get('thirdName')?.errors?.['textValidator']&&registrForm.get('thirdName')?.touched">Не
-                            верный формат ввода </span>
+                    <br>
+                    <div>
+                        <label for="thirdName">Отчество</label>
+                        <input id="thirdName" type="text" formControlName="thirdName" placeholder="Иванович"
+                            class="form-control" [ngClass]="{
+                                'is-invalid':thirdName.invalid && thirdName.dirty,
+                                'is-valid':thirdName.valid && thirdName.dirty
+                            }">
+                        <div class="alert alert-danger"
+                            *ngIf="registrForm.get('thirdName')?.errors?.['textValidator']&&registrForm.get('thirdName')?.touched">
+                            Не
+                            верный формат ввода </div>
                     </div>
-                    <div class="formBlock">
-                        <p>Дата рождения</p>
-                        <input type="text" formControlName="birthDay" placeholder="01.01.1900">
-                        <span
-                            *ngIf="registrForm.get('birthDay')?.errors?.['birthDayValidator']&&registrForm.get('birthDay')?.touched">Не
-                            верный формат ввода </span>
+                    <br>
+                    <div>
+                        <label for="birthDay">Дата рождения</label>
+                        <input id="birthDay" type="text" formControlName="birthDay" placeholder="01.01.1900"
+                            class="form-control" [ngClass]="{
+                                'is-invalid':birthDay.invalid && birthDay.dirty,
+                                'is-valid':birthDay.valid && birthDay.dirty
+                            }">
+                        <div class="alert alert-danger"
+                            *ngIf="registrForm.get('birthDay')?.errors?.['birthDayValidator']&&registrForm.get('birthDay')?.touched">
+                            Не
+                            верный формат ввода </div>
                     </div>
                 </div>
+                <br>
                 <div class="container-form_author-books">
                     <h2>Книги</h2>
 
-                    <div>
-                        <div *ngFor="let book of books" style="border:1px solid black; ">
-                            <div class="author-books_data">
-                                <div class="author-books_data-info">
-                                    <p>Название : {{book?.name}}</p>
-                                    <p>Жанр : {{book?.genre}} </p>
-                                    <p>Страницы : {{book?.str}}</p>
+                    <div class="container-form_author-books_block">
+                        <div *ngFor="let book of books">
+                            <div class="author-books_data card">
+                                <div class=" card-body">
+                                    <p class="card-text">Название : {{book?.name}}</p>
+                                    <p class="card-text">Жанр : {{book?.genre}} </p>
+                                    <p class="card-text">Страницы : {{book?.str}}</p>
                                 </div>
-                                <div class="edit-block">
+                                <div class="card-footer">
                                     <div>
-                                        <a href=" #" (click)="changeBook($event,book)">Редактировать</a>
+                                        <a href=" #" (click)="changeBook($event,book)"
+                                            class="link text-decoration-none text-secondary">Редактировать</a>
 
                                     </div>
                                     <div>
-                                        <a href="#" (click)="deleteBook($event,book.id)">Удалить</a>
-
+                                        <a href="#" (click)="deleteBook($event,book.id)"
+                                            class="link text-decoration-none text-secondary">Удалить</a>
                                     </div>
-
                                 </div>
                             </div>
-
-
                         </div>
                     </div>
                 </div>
 
             </div>
-            <div class="container-form_book">
-                <a href="authors" (click)="addBookToDataBooks($event)" class="add-book">Добавить Книгу</a>
-
+            <div>
+                <div style="margin-top: 20px;">
+                    <a href="authors" (click)="addBookToDataBooks($event)" class=" btn btn-outline-secondary ">Добавить
+                        Книгу</a>
+                </div>
 
                 <div formGroupName="booksData" *ngIf="addBookCheck">
-                    <div class="formBlock">
-                        <p>Название книги</p>
-                        <input type="text" formControlName="bookName" placeholder="Домино">
-                        <span
-                            *ngIf="registrForm.get('booksData')?.get('bookName')?.errors?.['textValidator']&&registrForm.get('booksData')?.get('bookName')?.touched">Не
-                            верный формат ввода </span>
-                    </div>
-                    <div class="formBlock">
-                        <p>Жанр</p>
-                        <select formControlName="bookGenre" name="select">
-                            <option *ngFor="let item of genresBooks" [value]="item" selected>{{item}}</option>
-                        </select>
-                    </div>
-                    <div class="formBlock">
-                        <p>Количество страниц</p>
-                        <input type="number" formControlName="bookLength" placeholder="123">
-                        <span
-                            *ngIf="registrForm.get('booksData')?.get('bookLength')?.errors?.['strValidator']&&registrForm.get('booksData')?.get('bookLength')?.touched">Не
-                            верный формат ввода </span>
-                    </div>
+                    <div class="form-group">
 
-                    <input type="button" class="save-book" value="Сохранить книгу"
-                        [disabled]="registrForm.get('booksData')?.invalid" (click)="addBook(registrForm)">
+                        <div style="margin-top:20px ;">
+                            <label for="bookName">Название книги</label>
+                            <input id="bookName" type="text" formControlName="bookName" placeholder="Домино"
+                                class="form-control" [ngClass]="{
+                                'is-invalid':bookName.invalid && bookName.dirty,
+                                'is-valid':bookName.valid && bookName.dirty
+                            }">
+
+                            <div class="alert alert-danger"
+                                *ngIf="registrForm.get('booksData')?.get('bookName')?.errors?.['textValidator']&&registrForm.get('booksData')?.get('bookName')?.touched">
+                                Не
+                                верный формат ввода </div>
+                        </div>
+                        <br>
+                        <div>
+                            <label for="bookGenre">Жанр</label>
+                            <select id="bookGenre" formControlName="bookGenre" name="select" class="form-control"
+                                [ngClass]="{
+                                'is-invalid':bookGenre.invalid && bookGenre.dirty,
+                                'is-valid':bookGenre.valid && bookGenre.dirty
+                            }">
+                                <option *ngFor="let item of genresBooks" [value]="item" selected>
+                                    {{item}}</option>
+                            </select>
+                        </div>
+                        <br>
+                        <div>
+                            <label for="bookLength">Количество страниц</label>
+                            <input id="bookLength" type="number" formControlName="bookLength" placeholder="123"
+                                class="form-control" [ngClass]="{
+                                'is-invalid':bookLength.invalid && bookLength.dirty,
+                                'is-valid':bookLength.valid && bookLength.dirty
+                            }">
+                            <div class="alert alert-danger"
+                                *ngIf="registrForm.get('booksData')?.get('bookLength')?.errors?.['strValidator']&&registrForm.get('booksData')?.get('bookLength')?.touched">
+                                Не
+                                верный формат ввода </div>
+                        </div>
+                    </div>
+                    <br>
+                    <input type="button" class="btn btn-outline-secondary" value="Сохранить книгу"
+                        (click)="addBook(registrForm)">
                 </div>
             </div>
         </div>
-
         <br>
-        <input type="submit" value="Сохранить" [disabled]="registrForm.invalid" class="save">
-
+        <input type="submit" value="Сохранить" class="btn btn-outline-secondary">
     </form>
 </div>
